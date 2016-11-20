@@ -1,0 +1,14 @@
+box: node
+
+build:
+  steps:
+    - script:
+        name: install serverless
+        code: npm install -g serverless@0.5.6
+    - script:
+        name: deploy
+        code: ./deploy.sh
+  after-steps:
+    - adrien/slack-notifier-bl@0.0.2:
+        url: $SLACK_URL
+        username: adrien
